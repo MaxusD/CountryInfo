@@ -4,13 +4,8 @@ const textMode = document.querySelector('.text-mode')
 const region = document.getElementById('region')
 const content = document.querySelector('.content')
 
-
-region.addEventListener('change', e => {
-    const value = region.options[region.selectedIndex].value
-    const urlFilterRegion = `https://restcountries.com/v3.1/region/${value}`
-    content.innerHTML = ''
-
-    fetch(urlFilterRegion)
+const getDataFromUrl = (url) => {
+    fetch(url)
         .then(response => response.json())
         .then(data => {
             data.forEach((item) => {
@@ -33,6 +28,19 @@ region.addEventListener('change', e => {
         .catch(() => {
             msg.textContent = 'Something was wrong'
         })
+}
+
+const getAllCountries = () => {
+    const url = 'https://restcountries.com/v3.1/all'
+    getDataFromUrl(url)
+}
+
+region.addEventListener('change', e => {
+    const value = region.options[region.selectedIndex].value
+    const urlFilterRegion = `https://restcountries.com/v3.1/region/${value}`
+    content.innerHTML = ''
+
+    getDataFromUrl(urlFilterRegion)
 })
 
 search.addEventListener('keypress', (e) => {
@@ -40,29 +48,7 @@ search.addEventListener('keypress', (e) => {
         const country = search.value
         const url = `https://restcountries.com/v3.1/name/${country}`
         content.innerHTML = ''
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                data.forEach((item) => {
-                    const div = document.createElement("div")
-                    div.classList.add('country-box')
-                    const flagUrl = item.flags.png
-                    const countryBox = `                                       
-                        <div class="flag"><img src="${flagUrl}" alt="${item.name.common}"></div>
-                        <div class="info">
-                            <div class="name-common">${item.name.common}</div>
-                            <div class="population">Population: ${(item.population).toLocaleString('en')}</div>
-                            <div class="region">Region: ${item.region}</div>
-                            <div class="capital">Capital: ${item.capital}</div>  
-                        </div>                                      
-               `
-                    div.innerHTML = countryBox
-                    content.appendChild(div)
-                })
-            })
-            .catch(() => {
-                msg.textContent = 'Enter correct country'
-            })
+        getDataFromUrl(url)
     }
 })
 
@@ -70,7 +56,7 @@ const switchMode = () => {
     const element = document.body
     const picDark = document.querySelector('.fa-solid.fa-moon')
     const picLight = document.querySelector('.fa-solid.fa-sun')
-    console.log('Pic Dark: ' + picDark)
+
     if (textMode.textContent === 'Dark Mode') {
         element.classList.remove('light-mode')
         picDark.classList.remove('fa-moon')
