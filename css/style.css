@@ -1,0 +1,106 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    margin: 10px 20px;
+    height: 100px;
+    line-height: 100px;
+    padding: 10px 50px;
+}
+
+.header h1 {
+    font-size: 40px;
+}
+
+.inner-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.wrapper-form {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 0;
+}
+
+.search {
+    background-color: #fff;
+    border-radius: 5px;
+    width: 400px;
+    padding: 10px 30px;
+    line-height: 35px;
+}
+
+.search input {
+    border: none;
+    width: 370px;
+    outline: none;
+}
+
+.mode {
+    font-size: 20px;
+}
+
+.filter {
+    line-height: 35px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    width: 200px;
+    text-align: center;
+}
+
+#region {
+    background-color: #fff;
+    border: none;
+}
+
+.content {
+    display: flex;
+    flex-flow: wrap;
+}
+
+.flag img {
+    width: 200px;
+    height: 133px;
+    border-radius: 5px 5px 0 0;
+}
+
+.country-box {
+    margin: 20px 25px 20px 0;
+    width: 200px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.info {
+    padding: 10px;
+    line-height: 1.5;
+}
+
+.name-common {
+    font-weight: bold;
+    font-size: 20px;
+    padding: 20px 0;
+}
+
+.mode {
+    cursor: pointer;
+}
+
+.dark-mode {
+    background-color: black;
+}
+
+.light-mode {
+    background-color: #f8f9fa;
+}
