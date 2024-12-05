@@ -32,6 +32,8 @@ body {
 }
 
 .search-container {
+    display: flex;
+    align-items: center;
     background-color: #fff;
     border-radius: 5px;
     width: 400px;
@@ -192,4 +194,18 @@ select {
 
 .light-mode {
     background-color: #f8f9fa;
+}
+
+#clear-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #888;
+    padding: 0;
+    margin: 0;
+}
+
+#clear-btn:hover {
+    color: #000;
 }

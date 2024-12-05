@@ -5,6 +5,7 @@ const iconMoon = document.querySelector('.icon.moon')
 const region = document.getElementById('region')
 const loading = document.getElementById('loading')
 const content = document.querySelector('.content')
+const clearButton = document.getElementById('clear-btn')
 let currentUrl = 'https://restcountries.com/v3.1/all'
 const timeout   = 500;
 
@@ -156,6 +157,18 @@ search.addEventListener('input', debounce((e) => {
     const query = e.target.value.trim()
     searchCountries(query)
 }, timeout))
+
+search.addEventListener('input', () => {
+    clearButton.style.display = search.value.trim() ? 'block' : 'none';
+})
+
+clearButton.addEventListener('click', () => {
+    search.value = ''
+    clearButton.style.display = 'none'
+    content.innerHTML = ''
+    msg.textContent = ''
+    getAllCountries()
+})
 
 const searchCountries = (query) => {
     if (!query) {
