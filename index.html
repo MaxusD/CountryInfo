@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Where in the world?</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
@@ -11,22 +11,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/ad1a271f15.js" crossorigin="anonymous"></script>
 </head>
-<body class="light-mode" onload="getAllCountries()">
+<body class="light-mode">
 <div class="wrapper">
     <div class="container">
-        <div class="header">
-            <h1>Where in the world?</h1>
-            <div class="mode" onclick="switchMode()"><i class="fa-solid fa-moon"></i><span class="text-mode">Dark Mode</span></div>
+        <div class="header-wrapper">
+            <div class="header">
+                <h1>Where in the world?</h1>
+            </div>
+            <div class="switch-wrapper">
+                <label class="switch-button">
+                    <input type="checkbox" class="switch" onclick="switchMode()">
+                    <span class="slider round">
+                        <i class="fas fa-sun icon sun"></i>
+                        <i class="fas fa-moon icon moon"></i>
+                    </span>
+                </label>
+            </div>
         </div>
         <div class="inner-wrapper">
             <div class="wrapper-form">
-                <div class="search">
+                <div class="search-container">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <input type="text" placeholder="Search for a country..." id="search" name="q" autofocus>
                 </div>
                 <div class="filter">
                     <select name="select-region" id="region">
-                        <option value="filter-by-region" selected>Filter by Region</option>
+                        <option value="" selected>All</option>
                         <option value="Africa">Africa</option>
                         <option value="Americas">Americas</option>
                         <option value="Asia">Asia</option>
@@ -35,8 +45,8 @@
                     </select>
                 </div>
             </div>
-            <div class="content">
-            </div>
+            <div class="content"></div>
+            <div id="loading" style="text-align: center; display: none;"><img src="images/loading.gif" width="100" height="100" /></div>
         </div>
         <span class="msg"></span>
     </div>
