@@ -82,41 +82,12 @@ const loadMoreItems = () => {
 
 const onScroll = () => {
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement
-    console.log('Scroll Top:', scrollTop);
-    console.log('Client Height:', clientHeight);
-    console.log('Scroll Height:', scrollHeight);
+
     if (scrollTop + clientHeight >= scrollHeight - 5 && !isLoading) {
         fetchData(currentUrl)
     }
 }
 
-/*
-const getDataFromUrl = (url) => {
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            data.forEach((item) => {
-                const div = document.createElement("div")
-                div.classList.add('country-box')
-                const flagUrl = item.flags.png
-                const countryBox = `                                       
-                        <div class="flag"><img src="${flagUrl}" alt="${item.name.common}"></div>
-                        <div class="info">
-                            <div class="name-common">${item.name.common}</div>
-                            <div class="population">Population: ${(item.population).toLocaleString('en')}</div>
-                            <div class="region">Region: ${item.region}</div>
-                            <div class="capital">Capital: ${item.capital}</div>  
-                        </div>                                      
-               `
-                div.innerHTML = countryBox
-                content.appendChild(div)
-            })
-        })
-        .catch(() => {
-            msg.textContent = 'Something was wrong'
-        })
-}
-*/
 const getAllCountries = () => {
     fetchData(currentUrl)
 }
@@ -137,15 +108,6 @@ region.addEventListener('change', (e) => {
 
     fetchData(currentUrl)
 })
-
-/*search.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        const country = search.value
-        const url = `https://restcountries.com/v3.1/name/${country}`
-        content.innerHTML = ''
-        fetchData(url)
-    }
-})*/
 
 const debounce = (fn, delay) => {
     let timeoutId

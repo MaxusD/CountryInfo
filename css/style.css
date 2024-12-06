@@ -209,3 +209,42 @@ select {
 #clear-btn:hover {
     color: #000;
 }
+
+@media (max-width: 480px) {
+    .header-wrapper {
+        line-height: 50px;
+    }
+
+    .country-box {
+        width: 100%;
+        margin: 20px 10px;
+    }
+
+    .flag img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .header-wrapper {
+        height: auto;
+    }
+
+    .search-container input {
+        width: 100%;
+        line-height: 35px;
+    }
+
+    .wrapper-form {
+        flex-flow: wrap;
+    }
+
+    .filter, .search-container {
+        width: 100%;
+        margin: 10px;
+    }
+
+    #region {
+        width: 100%;
+    }
+
+}
