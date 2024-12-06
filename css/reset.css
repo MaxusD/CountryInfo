@@ -29,6 +29,11 @@ footer, header, hgroup, menu, nav, section {
 body {
     line-height: 0;
 }
+html, body {
+    height: auto;
+    overflow: auto;
+}
+
 ol, ul {
     list-style: none;
 }

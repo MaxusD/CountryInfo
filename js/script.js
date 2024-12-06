@@ -82,7 +82,9 @@ const loadMoreItems = () => {
 
 const onScroll = () => {
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement
-
+    console.log('Scroll Top:', scrollTop);
+    console.log('Client Height:', clientHeight);
+    console.log('Scroll Height:', scrollHeight);
     if (scrollTop + clientHeight >= scrollHeight - 5 && !isLoading) {
         fetchData(currentUrl)
     }
