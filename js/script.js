@@ -93,9 +93,16 @@ const onScroll = () => {
         return
     }
 
-    const { scrollTop, scrollHeight, clientHeight } = document.documentElement
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const clientHeight = document.documentElement.clientHeight;
+    const scrollHeight = Math.max(
+        document.documentElement.scrollHeight,
+        document.body.scrollHeight
+    )
 
-    if (scrollTop + clientHeight >= scrollHeight - 30 && !isLoading) {
+    //const { scrollTop, scrollHeight, clientHeight } = document.documentElement
+
+    if (scrollTop + clientHeight >= scrollHeight - 300 && !isLoading) {
         fetchData(currentUrl)
     }
 }
@@ -114,12 +121,11 @@ region.addEventListener('change', (e) => {
     offset = 0
     allData = []
     isLoading = false
-    isSearching = false
     msg.textContent = ''
     search.value = ''
     clearButton.style.display = 'none'
 
-    window.addEventListener('scroll', onScroll)
+    window.addEventListener('scroll', onScroll, {passive: true})
 
     fetchData(currentUrl)
 })
