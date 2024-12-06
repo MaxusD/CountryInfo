@@ -7,8 +7,9 @@ const loading = document.getElementById('loading')
 const content = document.querySelector('.content')
 const clearButton = document.getElementById('clear-btn')
 let currentUrl = 'https://restcountries.com/v3.1/all'
-const timeout   = 500;
+const timeout   = 500
 
+let isSearching = false
 let isLoading = false
 let offset = 0
 const limit = 10
@@ -63,6 +64,12 @@ const fetchData = (url) => {
 
 
 const loadMoreItems = () => {
+    if (isSearching) {
+        console.log("isSearching loadMore: " + isSearching)
+        return
+    }
+    isLoading = true
+
     const nextData = allData.slice(offset, offset + limit)
 
     if (nextData.length === 0) {
@@ -81,9 +88,13 @@ const loadMoreItems = () => {
 
 
 const onScroll = () => {
+    if (isSearching || search.value.trim() !== '') {
+        console.log('isSearching || isLoading: ' + isSearching + ' ' + isLoading)
+        return
+    }
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement
 
-    if (scrollTop + clientHeight >= scrollHeight - 5 && !isLoading) {
+    if (scrollTop + clientHeight >= scrollHeight - 30 && !isLoading) {
         fetchData(currentUrl)
     }
 }
@@ -119,7 +130,9 @@ const debounce = (fn, delay) => {
 
 search.addEventListener('input', debounce((e) => {
     const query = e.target.value.trim()
+    isSearching = true
     searchCountries(query)
+    isSearching = false
 }, timeout))
 
 search.addEventListener('input', () => {
@@ -140,7 +153,7 @@ const searchCountries = (query) => {
         msg.textContent = ''
         return
     }
-
+    isSearching = true
     fetch(`https://restcountries.com/v3.1/name/${query}`)
         .then((response) => {
             if (!response.ok) {
@@ -154,6 +167,9 @@ const searchCountries = (query) => {
         .catch((error) => {
             content.innerHTML = ''
             msg.textContent = error.message
+        })
+        .finally(() => {
+            isSearching = false; // Сбрасываем флаг поиска
         })
 
 }

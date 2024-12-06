@@ -31,7 +31,7 @@ body {
 }
 html, body {
     height: auto;
-    overflow: auto;
+    /*overflow: auto;*/
 }
 
 ol, ul {
