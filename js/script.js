@@ -40,7 +40,9 @@ const renderCountry = (country) => {
 
 const fetchData = (url) => {
 
-    if (isLoading) return
+    if (isLoading) {
+        return
+    }
 
     isLoading = true
     loading.style.display = 'block'
@@ -65,7 +67,6 @@ const fetchData = (url) => {
 
 const loadMoreItems = () => {
     if (isSearching) {
-        console.log("isSearching loadMore: " + isSearching)
         return
     }
     isLoading = true
@@ -89,9 +90,9 @@ const loadMoreItems = () => {
 
 const onScroll = () => {
     if (isSearching || search.value.trim() !== '') {
-        console.log('isSearching || isLoading: ' + isSearching + ' ' + isLoading)
         return
     }
+
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement
 
     if (scrollTop + clientHeight >= scrollHeight - 30 && !isLoading) {
@@ -113,7 +114,10 @@ region.addEventListener('change', (e) => {
     offset = 0
     allData = []
     isLoading = false
+    isSearching = false
     msg.textContent = ''
+    search.value = ''
+    clearButton.style.display = 'none'
 
     window.addEventListener('scroll', onScroll)
 
