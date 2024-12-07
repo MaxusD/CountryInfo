@@ -25,17 +25,17 @@ const renderCountry = (country) => {
     const flagUrl = country.flags.png
     const currencies = country.currencies
     const languages = country.languages
-    const languagesKeys = Object.keys(languages)
-    const currencyKeys = Object.keys(currencies)
+    const languagesKeys = Object.keys(languages || {})
+    const currencyKeys = Object.keys(currencies || {})
 
     const countryBox = `
         <div class="flag"><img src="${flagUrl}" alt="${country.name.common}"></div>
         <div class="info">
             <div class="name-common">${country.name.common}</div>
             <div class="official">Official: ${country.name.official}</div>
-            <div class="lang">Language: ${languagesKeys}</div>            
+            <div class="lang">Language: ${languagesKeys || {}}</div>                     
             <div class="population">Population: ${(country.population).toLocaleString('en')}</div>
-            <div class="currency">Currency: ${currencies[currencyKeys[0]].name}<br>Currency symbol: ${currencies[currencyKeys[0]].symbol}</div>            
+            <div class="currency">Currency: ${currencyKeys.length > 0 ? currencies[currencyKeys[0]].name : "N/A"}<br>Currency symbol: ${currencyKeys.length > 0 ? currencies[currencyKeys[0]].symbol : "N/A" }</div>           
             <div class="region">Region: ${country.region}</div>
             <div class="capital">Capital: ${country.capital || "N/A"}</div>
             <div class="map">GoogleMap: <a href="${country.maps.googleMaps}">look on the map</a></div>
