@@ -164,6 +164,10 @@ select {
     border-radius: 5px 5px 0 0;
 }
 
+.msg {
+    color: red;
+}
+
 .country-box {
     width: 200px;
     margin: 10px 0;
@@ -175,6 +179,12 @@ select {
 .info {
     padding: 10px;
     line-height: 1.5;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.info div {
+    padding: 5px 0;
 }
 
 .name-common {

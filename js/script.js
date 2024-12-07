@@ -23,14 +23,22 @@ const renderCountry = (country) => {
     div.classList.add('country-box')
 
     const flagUrl = country.flags.png
+    const currencies = country.currencies
+    const languages = country.languages
+    const languagesKeys = Object.keys(languages)
+    const currencyKeys = Object.keys(currencies)
+
     const countryBox = `
         <div class="flag"><img src="${flagUrl}" alt="${country.name.common}"></div>
         <div class="info">
             <div class="name-common">${country.name.common}</div>
             <div class="official">Official: ${country.name.official}</div>
+            <div class="lang">Language: ${languagesKeys}</div>            
             <div class="population">Population: ${(country.population).toLocaleString('en')}</div>
+            <div class="currency">Currency: ${currencies[currencyKeys[0]].name}<br>Currency symbol: ${currencies[currencyKeys[0]].symbol}</div>            
             <div class="region">Region: ${country.region}</div>
             <div class="capital">Capital: ${country.capital || "N/A"}</div>
+            <div class="map">GoogleMap: <a href="${country.maps.googleMaps}">look on the map</a></div>
         </div>`;
     div.innerHTML = countryBox
 
@@ -179,7 +187,7 @@ const searchCountries = (query) => {
             msg.textContent = error.message
         })
         .finally(() => {
-            isSearching = false; // Сбрасываем флаг поиска
+            isSearching = false;
         })
 
 }
