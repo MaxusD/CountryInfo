@@ -27,15 +27,20 @@ const renderCountry = (country) => {
     const languages = country.languages
     const languagesValues = Object.values(languages || {})
     const currencyKeys = Object.keys(currencies || {})
+    let correctLanguageValues = 0
 
-    console.log("Language: " + languagesValues)
+   if (languagesValues.length > 1) {
+        correctLanguageValues = languagesValues.map(item => item.replace(/,/g, ', '))
+       console.log("correct language values:", correctLanguageValues.toString().replace(/,/g, ', '))
+    }
+
 
     const countryBox = `
         <div class="flag"><img src="${flagUrl}" alt="${country.name.common}"></div>
         <div class="info">
             <div class="name-common">${country.name.common}</div>
             <div class="official">Official: ${country.name.official}</div>
-            <div class="lang">Language: ${languagesValues.length > 0 ? languagesValues : "N/A"}</div>                     
+            <div class="lang">Language: ${languagesValues.length > 0 ? languagesValues.toString().replace(/,/g, ', ') : "N/A"}</div>                     
             <div class="population">Population: ${(country.population).toLocaleString('en')}</div>
             <div class="currency">Currency: ${currencyKeys.length > 0 ? currencies[currencyKeys[0]].name : "N/A"}<br>Currency symbol: ${currencyKeys.length > 0 ? currencies[currencyKeys[0]].symbol : "N/A" }</div>           
             <div class="region">Region: ${country.region}</div>
