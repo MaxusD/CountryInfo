@@ -27,13 +27,6 @@ const renderCountry = (country) => {
     const languages = country.languages
     const languagesValues = Object.values(languages || {})
     const currencyKeys = Object.keys(currencies || {})
-    let correctLanguageValues = 0
-
-   if (languagesValues.length > 1) {
-        correctLanguageValues = languagesValues.map(item => item.replace(/,/g, ', '))
-       console.log("correct language values:", correctLanguageValues.toString().replace(/,/g, ', '))
-    }
-
 
     const countryBox = `
         <div class="flag"><img src="${flagUrl}" alt="${country.name.common}"></div>
@@ -44,7 +37,7 @@ const renderCountry = (country) => {
             <div class="population">Population: ${(country.population).toLocaleString('en')}</div>
             <div class="currency">Currency: ${currencyKeys.length > 0 ? currencies[currencyKeys[0]].name : "N/A"}<br>Currency symbol: ${currencyKeys.length > 0 ? currencies[currencyKeys[0]].symbol : "N/A" }</div>           
             <div class="region">Region: ${country.region}</div>
-            <div class="capital">Capital: ${country.capital || "N/A"}</div>
+            <div class="capital">Capital: ${(country.capital).length > 0 ? country.capital.toString().replace(/,/g, ', ') : "N/A"}</div>
             <div class="map">GoogleMap: <a href="${country.maps.googleMaps}">look on the map</a></div>
         </div>`;
     div.innerHTML = countryBox
