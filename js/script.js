@@ -37,7 +37,7 @@ const renderCountry = (country) => {
             <div class="population">Population: ${(country.population).toLocaleString('en')}</div>
             <div class="currency">Currency: ${currencyKeys.length > 0 ? currencies[currencyKeys[0]].name : "N/A"}<br>Currency symbol: ${currencyKeys.length > 0 ? currencies[currencyKeys[0]].symbol : "N/A" }</div>           
             <div class="region">Region: ${country.region}</div>
-            <div class="capital">Capital: ${(country.capital).length > 0 ? country.capital.toString().replace(/,/g, ', ') : "N/A"}</div>
+            <div class="capital">Capital: ${(country.capital || {}).length > 0 ? country.capital.toString().replace(/,/g, ', ') : "N/A"}</div>
             <div class="map">GoogleMap: <a href="${country.maps.googleMaps}">look on the map</a></div>
         </div>`;
     div.innerHTML = countryBox
