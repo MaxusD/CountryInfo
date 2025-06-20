@@ -6,7 +6,7 @@ const region = document.getElementById('region')
 const loading = document.getElementById('loading')
 const content = document.querySelector('.content')
 const clearButton = document.getElementById('clear-btn')
-let currentUrl = 'https://restcountries.com/v3.1/all'
+let currentUrl = 'https://restcountries.com/v3.1/independent?status=true'
 const timeout   = 500
 
 let isSearching = false
