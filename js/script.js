@@ -123,7 +123,7 @@ region.addEventListener('change', (e) => {
     const value = region.value
     currentUrl = value
         ? `https://restcountries.com/v3.1/region/${value}`
-        : 'https://restcountries.com/v3.1/all'
+        : 'https://restcountries.com/v3.1/independent?status=true'
 
     content.innerHTML = ''
     offset = 0
